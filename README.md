@@ -1,56 +1,46 @@
-# Bienvenidos a mi proyecto
+# Bienvenidos a mi proyecto CONNECTOR SHOP
+
+## Introdución
+
+Soy Julio Andrés Alarcón Caballero, estudiante de Python Comisión 34665, este es mi proyecto llamado Connector Shop, el cual consiste en la tercera entrega en CoderHouse
+
 
 ## Descripción
 
-Este es un proyecto para demostrar varios tipos de letras y colores que se pueden utilizar en Markdown.
+En este proyecto se cumplen los siguientes puntos
+- Desarrollar una WEB en Django con patrón MVT
+- Herencia HTML
+- 3 clases en models
+- Un formulario para insertar datos a todas las clases en models
+- Un formulario para buscar en la BD
+- Readme que indique el orden en el que se prueban las cosas y donde se encuentran las funcionalidades
 
-## Ejemplos
 
-Aquí hay algunos ejemplos de diferentes tipos de letras y colores que puedes utilizar en tus READMEs:
+### Herencia HTML
 
-### Títulos
+El .HTML que se heredara es el:
 
-# Título 1
-## Título 2
-### Título 3
-#### Título 4
-##### Título 5
-###### Título 6
 
-### Texto normal
+**base.html**
 
-Este es un ejemplo de texto normal.
+El cual contiene un nav bar con accesos a otros templates, entre estas opciones tenemos la pagina de productos y las opciones para editar y ver la información del usuario y adminstrador.
 
-### Colores
+Templates que heredan esta base son: **todos**
+Ruta del .html: **connectorshop/templates/base.html**
+Permisos: **Ninguno**
 
-Puedes utilizar diferentes colores para resaltar ciertas partes del texto.
 
-Este es un ejemplo de texto con <span style="color:red">color rojo</span>.
+### 3 clases en models
 
-Este es un ejemplo de texto con <span style="color:blue">color azul</span>.
+Los modelos son:
 
-Este es un ejemplo de texto con <span style="color:green">color verde</span>.
+**Category**
+**Tag**
+**Article**
 
-### Estilos
+Los models Tag y Category componen parte del model Article de forma muchos a muchos, **tag** contendra todos los textos que querramos para definir un producto, por Ej: "Nuevo", "Usado", "Tecnologico", etc.., **Category** contendra todos los tipos de productos de los que puede proceder un articulo, por Ej: "CPU", "Teclado", "Microfono", etc.., **Article** contendra todos los articulos que se registran en la tienda con sus respectivos datos como el stock, sku, precio, descripcion, tags, categoria y si se encuentra publicado para su compra.
 
-También puedes utilizar diferentes estilos de fuente para dar formato al texto.
+Ruta de los models: **connectorshop/models.py**
 
-Este es un ejemplo de texto en **negrita**.
 
-Este es un ejemplo de texto en *cursiva*.
-
-Este es un ejemplo de texto en ***negrita y cursiva***.
-
-## Contribuciones
-
-Si deseas contribuir a este proyecto, ¡adelante! Siéntete libre de hacer una bifurcación (fork) y enviar una solicitud de extracción (pull request).
-
-## Licencia
-
-Este proyecto se encuentra bajo la licencia MIT.
-
-<span style="color:blue">Texto en color azul</span>
-
-<font color="red">Este texto será rojo</font>
-
-![Gato durmiendo en una caja](/media/images/tringle-purple.jpg)
+### Formulari para insertar datos a los models
