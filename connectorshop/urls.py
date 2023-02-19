@@ -22,5 +22,9 @@ urlpatterns = [
     path('category/<int:pk>/edit/', views.category_edit, name='category_edit'),
     path('category/<int:pk>/delete/', views.category_delete, name='category_delete'),
     
-    path('product/list/', views.product_list, name='product_list'),
+    path('article/list/', views.article_list, name='article_list'),
+    path('article/<int:pk>/', views.article_detail, name='article_detail'),
+    path('article/new/', views.article_new, name='article_new'),
+    path('article/<int:pk>/edit/', views.article_edit, name='article_edit'),
+    path('article/<int:pk>/delete/', views.article_delete, name='article_delete'),
 ]

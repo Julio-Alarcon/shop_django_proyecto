@@ -33,7 +33,7 @@
 							class="card-img-top h-50"
 							src="/media/{{ article.image }}"
 							alt=""
-							onclick="showAlert('{{ article.title }}','{{ article.sku }}','{{ article.stock }}','{{ article.content }}','/media/{{ article.image }}')"
+							onclick="showAlert('{{ article.title }}','{{ article.sku }}','{{ article.stock }}','{{ article.description }}','/media/{{ article.image }}')"
 						/>
 						<div class="card-body">
 							<h4 class="card-title">
@@ -41,7 +41,7 @@
 							</h4>
 							{% load humanize %}
 							<h5>${{ article.price|floatformat:0|intcomma }} CLP</h5>
-							<p class="card-text text-orange">{{ article.content }}</p>
+							<p class="card-text text-orange">{{ article.description }}</p>
 						</div>
 						<div class="card-footer footer-product">
 							{% if article.stock > 0 %}

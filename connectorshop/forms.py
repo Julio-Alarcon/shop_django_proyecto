@@ -77,6 +77,14 @@ class TagForm(forms.ModelForm):
             'order': forms.NumberInput(attrs={'class': 'form-control'})
         }
 
+## FORMULARIO DE CREACION Y EDICCION DE ARTICULOS ##
+class ArticleForm(forms.ModelForm):
+    category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), widget=forms.SelectMultiple)
+    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple)
+    class Meta:
+        model = Article
+        fields = ['title', 'sku', 'price', 'stock', 'description', 'image', 'category', 'tag', 'published']
+
 ## FORMULARIO DE BUSQUEDA DE ARTICULOS ##
 class ArticleSearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, widget=forms.TextInput(attrs={'placeholder': 'Buscar...'}))

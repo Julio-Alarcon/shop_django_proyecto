@@ -6,12 +6,17 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from .models import Article, Category, Tag
-from .forms import RegisterForm, LoginForm, EditUserForm, EditPasswordForm, CategoryForm, ArticleSearchForm, TagForm
+from .forms import RegisterForm, LoginForm, EditUserForm, EditPasswordForm, CategoryForm, ArticleSearchForm, TagForm, ArticleForm
+
+
 
 def superuser_required(view_func):
     decorated_view_func = user_passes_test(lambda u: u.is_superuser, login_url='/')(view_func)
     return decorated_view_func
 
+
+
+## REGISTRO E INICIO DE SESION DE CUENTA ##
 def index(request):
     login_form = LoginForm()
     register_form = RegisterForm()
@@ -41,26 +46,20 @@ def index(request):
         elif 'logout' in request.POST:
             return redirect('logout')
     return render(request, 'index.html', {'login_form': login_form, 'register_form': register_form})
+## REGISTRO E INICIO DE SESION DE CUENTA ##
 
-def contact(request):
-    return render(request, 'contact.html')
 
+
+## GESTION DE CUENTA ##
 @login_required
 def home(request):
     return render(request, 'home.html')
-
-@login_required
-def products(request):
-    form_article = ArticleSearchForm(request.GET or None)
-    tags = Tag.objects.all()
-    categories = Category.objects.all()
-    if form_article.is_valid():
-        articles = form_article.search_articles()
-    else:
-        articles = Article.objects.all()
-    context = {'articles': articles, 'form_article': form_article, 'tags': tags, 'categories': categories}
-    return render(request, 'products.html', context)
-
+class LogoutView(TemplateView):
+    template_name = 'logout.html'
+    
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect(reverse_lazy('index'))
 @login_required
 def user_edit(request):
     if request.method == 'POST':
@@ -75,14 +74,18 @@ def user_edit(request):
         user_form = EditUserForm(instance=request.user)
         password_form = EditPasswordForm(request.user)
     return render(request, 'user_edit.html', {'user_form': user_form, 'password_form': password_form})
+## GESTION DE CUENTA ##
 
-class LogoutView(TemplateView):
-    template_name = 'logout.html'
-    
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return redirect(reverse_lazy('index'))
 
+
+## DATOS DE CONTACTO DE LA TIENDA ##
+def contact(request):
+    return render(request, 'contact.html')
+## DATOS DE CONTACTO DE LA TIENDA ##
+
+
+
+## CATEGORIAS ##
 @superuser_required
 def category_new(request):
     template_name = 'categories/category_new.html'
@@ -95,7 +98,6 @@ def category_new(request):
         'title': 'Create Category'
     }
     return render(request, template_name, context)
-
 @superuser_required
 def category_edit(request, pk):
     category = Category.objects.get(id=pk)
@@ -111,7 +113,6 @@ def category_edit(request, pk):
         'form': form
     }
     return render(request, 'categories/category_edit.html', context)
-
 @superuser_required
 def category_list(request):
     template_name = 'categories/category_list.html'
@@ -120,7 +121,6 @@ def category_list(request):
         'categories': categories
     }
     return render(request, template_name, context)
-
 @superuser_required
 def category_detail(request, pk):
     template_name = 'categories/category_detail.html'
@@ -129,17 +129,16 @@ def category_detail(request, pk):
         'category': category
     }
     return render(request, template_name, context)
-
 @superuser_required
 def category_delete(request, pk):
     category = Category.objects.get(pk=pk)
     category.delete()
     return redirect('category_list')
+## CATEGORIAS ##
 
 
 
-
-
+## TAGS ##
 @superuser_required
 def tag_new(request):
     form = TagForm(request.POST or None, request.FILES or None)
@@ -151,7 +150,6 @@ def tag_new(request):
         'title': 'Create Tag'
     }
     return render(request, 'tags/tag_new.html', context)
-
 @superuser_required
 def tag_edit(request, pk):
     tag = Tag.objects.get(id=pk)
@@ -168,7 +166,6 @@ def tag_edit(request, pk):
         'title': 'Editar Tag'
     }
     return render(request, 'tags/tag_edit.html', context)
-
 @superuser_required
 def tag_list(request):
     template_name = 'tags/tag_list.html'
@@ -178,7 +175,6 @@ def tag_list(request):
         'title': 'Tags'
     }
     return render(request, template_name, context)
-
 @superuser_required
 def tag_detail(request, pk):
     template_name = 'tags/tag_detail.html'
@@ -188,25 +184,76 @@ def tag_detail(request, pk):
         'title': 'Detalles del Tag'
     }
     return render(request, template_name, context)
-
 @superuser_required
 def tag_delete(request, pk):
     tag = Tag.objects.get(pk=pk)
     tag.delete()
     return redirect('tag_list')
+## TAGS ##
 
 
 
-
-
-
-
-
+## ARTICULOS ##
 @superuser_required
-def product_list(request):
-    template_name = 'products/product_list.html'
-    products = Article.objects.all().order_by('-created_at')
+def article_new(request):
+    template_name = 'articles/article_new.html'
+    form = ArticleForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        return redirect('article_list')
     context = {
-        'products': products
+        'form': form,
+        'title': 'Create Article'
     }
     return render(request, template_name, context)
+@superuser_required
+def article_edit(request, pk):
+    article = Article.objects.get(id=pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('article_detail', pk=pk)
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article': article,
+        'form': form
+    }
+    return render(request, 'articles/article_edit.html', context)
+@superuser_required
+def article_list(request):
+    template_name = 'articles/article_list.html'
+    articles = Article.objects.all().order_by('-created_at')
+    context = {
+        'articles': articles
+    }
+    return render(request, template_name, context)
+@superuser_required
+def article_detail(request, pk):
+    template_name = 'articles/article_detail.html'
+    article = get_object_or_404(Article, pk=pk)
+    context = {
+        'article': article
+    }
+    return render(request, template_name, context)
+@superuser_required
+def article_delete(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.delete()
+    return redirect('article_list')
+## ARTICULOS ##
+
+
+
+@login_required
+def products(request):
+    form_article = ArticleSearchForm(request.GET or None)
+    tags = Tag.objects.all()
+    categories = Category.objects.all()
+    if form_article.is_valid():
+        articles = form_article.search_articles()
+    else:
+        articles = Article.objects.all()
+    context = {'articles': articles, 'form_article': form_article, 'tags': tags, 'categories': categories}
+    return render(request, 'products.html', context)
