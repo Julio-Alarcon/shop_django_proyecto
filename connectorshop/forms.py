@@ -28,6 +28,9 @@ class RegisterForm(forms.ModelForm):
         if password != password2:
             raise forms.ValidationError("Passwords don't match")
         return password
+## FORMULARIO DE REGISTRO ##
+
+
 
 ## FORMULARIO DE EDICCION DE DATOS DEL USUARIO ##
 class EditUserForm(forms.ModelForm):
@@ -35,10 +38,16 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
+## FORMULARIO DE EDICCION DE DATOS DEL USUARIO ##
+
+
 
 ## FORMULARIO DE EDICCION DE CONTRASEÑA DEL USUARIO ##
 class EditPasswordForm(PasswordChangeForm):
     pass
+## FORMULARIO DE EDICCION DE CONTRASEÑA DEL USUARIO ##
+
+
 
 ## FORMULARIO DE CREACION Y EDICCION DE CATEGORIAS ##
 class CategoryForm(forms.ModelForm):
@@ -58,6 +67,9 @@ class CategoryForm(forms.ModelForm):
             'highlighted': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'order': forms.NumberInput(attrs={'class': 'form-control'})
         }
+## FORMULARIO DE CREACION Y EDICCION DE CATEGORIAS ##
+
+
 
 ## FORMULARIO DE CREACION Y EDICCION DE CATEGORIAS ##
 class TagForm(forms.ModelForm):
@@ -76,6 +88,9 @@ class TagForm(forms.ModelForm):
             'highlighted': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'order': forms.NumberInput(attrs={'class': 'form-control'})
         }
+## FORMULARIO DE CREACION Y EDICCION DE CATEGORIAS ##
+
+
 
 ## FORMULARIO DE CREACION Y EDICCION DE ARTICULOS ##
 class ArticleForm(forms.ModelForm):
@@ -84,6 +99,9 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ['title', 'sku', 'price', 'stock', 'description', 'image', 'category', 'tag', 'published']
+## FORMULARIO DE CREACION Y EDICCION DE ARTICULOS ##
+
+
 
 ## FORMULARIO DE BUSQUEDA DE ARTICULOS ##
 class ArticleSearchForm(forms.Form):
@@ -102,6 +120,6 @@ class ArticleSearchForm(forms.Form):
         if category:
             articles = articles.filter(category=category)
         return articles
-
+## FORMULARIO DE BUSQUEDA DE ARTICULOS ##
 
 
