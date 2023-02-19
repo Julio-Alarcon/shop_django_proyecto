@@ -72,22 +72,22 @@ Permisos: **@login_required**
 
 ## Readme que indique el orden en el cual se prueban las cosas
 
-0- url: "/" Registro de cuenta o inicio de sesion
+- url: "/" Registro de cuenta o inicio de sesion
 **@login_required**
-1- url: "/home" Visualización de la información del usuario
-2- url: "/user_edit" Formulario que te permitira editar la información del usuario
-3- url: "/products" Lista en el cual te encontraras todos los productos
-4- url: "/logout" Cerrar sesion
+- url: "/home" Visualización de la información del usuario
+- url: "/user_edit" Formulario que te permitira editar la información del usuario
+- url: "/products" Lista en el cual te encontraras todos los productos
+- url: "/logout" Cerrar sesion
 **@superuser_required**
-5- url: "/article/list" Lista de articulos en formato texto, con posibilidad de crear uno nuevo, ver los detalles, editar la información y eliminar
-6- url: "/article/new" Formulario para crear un nuevo articulo
-7- url: "/article/<int:pk>/edit" Formulario que permite editar la informacion de un articulo
-8- url: "/article/<int:pk>/delete" Eliminar el articulo
-9- url: "/tag/list" Lista de tags en formato texto, con posibilidad de crear uno nuevo, ver los detalles, editar la información y eliminar
-10- url: "/tag/new" Formulario para crear un nuevo tag
-11- url: "/tag/<int:pk>/edit" Formulario que permite editar la informacion de un tag
-12- url: "/tag/<int:pk>/delete" Eliminar el tag
-13- url: "/category/list" Lista de categorias en formato texto, con posibilidad de crear una nueva, ver los detalles, editar la información y eliminar
-14- url: "/category/new" Formulario para crear una nueva categoria
-15- url: "/category/<int:pk>/edit" Formulario que permite editar la informacion de una categoria
-16- url: "/category/<int:pk>/delete" Eliminar la categoria
+- url: "/article/list" Lista de articulos en formato texto, con posibilidad de crear uno nuevo, ver los detalles, editar la información y eliminar
+- url: "/article/new" Formulario para crear un nuevo articulo
+- url: "/article/<int:pk>/edit" Formulario que permite editar la informacion de un articulo
+- url: "/article/<int:pk>/delete" Eliminar el articulo
+- url: "/tag/list" Lista de tags en formato texto, con posibilidad de crear uno nuevo, ver los detalles, editar la información y eliminar
+- url: "/tag/new" Formulario para crear un nuevo tag
+- url: "/tag/<int:pk>/edit" Formulario que permite editar la informacion de un tag
+- url: "/tag/<int:pk>/delete" Eliminar el tag
+- url: "/category/list" Lista de categorias en formato texto, con posibilidad de crear una nueva, ver los detalles, editar la información y eliminar
+- url: "/category/new" Formulario para crear una nueva categoria
+- url: "/category/<int:pk>/edit" Formulario que permite editar la informacion de una categoria
+- url: "/category/<int:pk>/delete" Eliminar la categoria
