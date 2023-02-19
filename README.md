@@ -52,3 +52,5 @@ Este proyecto se encuentra bajo la licencia MIT.
 <span style="color:blue">Texto en color azul</span>
 
 <font color="red">Este texto será rojo</font>
+
+![Gato durmiendo en una caja](images/tringle-purple.jpg)
