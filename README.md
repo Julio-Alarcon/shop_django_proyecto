@@ -20,55 +20,55 @@ En este proyecto se cumplen los siguientes puntos
 
 El .HTML que se heredara es el:
 
-
-**base.html**
+-**base.html**
 
 El cual contiene un nav bar con accesos a otros templates, entre estas opciones tenemos la pagina de productos y las opciones para editar y ver la información del usuario y adminstrador.
 
-Templates que heredan esta base son: **todos**
-Ruta del .html: **connectorshop/templates/base.html**
-Permisos: **Ninguno**
+-Templates que heredan esta base son: **todos**
+-Ruta del .html: **connectorshop/templates/base.html**
+-Permisos: **Ninguno**
 
 
 ## 3 Clases en models
 
 Los modelos son:
 
-**Category**, 
-**Tag**, 
-**Article**
+-**Category**, 
+-**Tag**, 
+-**Article**
 
 Los models Tag y Category componen parte del model Article de forma muchos a muchos, **Tag** contendra todos los textos que querramos para definir un producto, por Ej: "Nuevo", "Usado", "Tecnologico", etc.., **Category** contendra todos los tipos de productos de los que puede proceder un articulo, por Ej: "CPU", "Teclado", "Microfono", etc.., **Article** contendra todos los articulos que se registran en la tienda con sus respectivos datos como el stock, sku, precio, descripcion, tags, categoria y si se encuentra publicado para su compra.
 
-Ruta de los models: **connectorshop/models.py**
-
+-Ruta de los models: **connectorshop/models.py**
 
 ## Formulario para insertar datos a los models
 
 Los formularios son:
 
-**TagForm**, **CategoryForm**, **ArticleForm**
+-**TagForm**
+-**CategoryForm**
+-**ArticleForm**
 
 Los siguientes formularios cumplen con los diferentes fields que contiene cada uno de estos models y les da un formato al input correspondiente
 
-Templates que ocupan el formulario **TagForm**: **tag_edit.html** y **tag_new**
-Templates que ocupan el formulario **CategoryForm**: **category_edit.html** y **category_new**
-Templates que ocupan el formulario **ArticleForm**: **article_edit.html** y **article_new**
-Ruta templates: **connectorshop/templates/tags/**, **connectorshop/templates/categories/**, **connectorshop/templates/articles/**
-Ruta de los forms: **connectorshop/forms.py**
-Permisos: **@superuser_required**
+-Templates que ocupan el formulario **TagForm**: **tag_edit.html** y **tag_new**
+-Templates que ocupan el formulario **CategoryForm**: **category_edit.html** y **category_new**
+-Templates que ocupan el formulario **ArticleForm**: **article_edit.html** y **article_new**
+-Ruta templates: **connectorshop/templates/tags/**, **connectorshop/templates/categories/**, **connectorshop/templates/articles/**
+-Ruta de los forms: **connectorshop/forms.py**
+-Permisos: **@superuser_required**
 
 ## Formulario para buscar en la BD
 
 El formulario es:
 
-**ArticleSearchForm**
+-**ArticleSearchForm**
 
 El siguiente formulario ayuda a buscar entre los distintos tipos de productos que se encuentran a la venta
 
-Template que ocupa el formulario: **products.html**
-Ruta del template: **connectorshop/templates/products.html**
-Permisos: **@login_required**
+-Template que ocupa el formulario: **products.html**
+-Ruta del template: **connectorshop/templates/products.html**
+-Permisos: **@login_required**
 
 ## Readme que indique el orden en el cual se prueban las cosas
 
