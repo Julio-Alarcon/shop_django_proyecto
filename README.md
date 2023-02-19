@@ -53,4 +53,4 @@ Este proyecto se encuentra bajo la licencia MIT.
 
 <font color="red">Este texto será rojo</font>
 
-![Gato durmiendo en una caja](images/tringle-purple.jpg)
+![Gato durmiendo en una caja](/media/images/tringle-purple.jpg)
