@@ -16,7 +16,7 @@ En este proyecto se cumplen los siguientes puntos
 - Readme que indique el orden en el que se prueban las cosas y donde se encuentran las funcionalidades
 
 
-### Herencia HTML
+## Herencia HTML
 
 El .HTML que se heredara es el:
 
@@ -30,7 +30,7 @@ Ruta del .html: **connectorshop/templates/base.html**
 Permisos: **Ninguno**
 
 
-### 3 Clases en models
+## 3 Clases en models
 
 Los modelos son:
 
@@ -43,4 +43,4 @@ Los models Tag y Category componen parte del model Article de forma muchos a muc
 Ruta de los models: **connectorshop/models.py**
 
 
-### Formulari para insertar datos a los models
+## Formulario para insertar datos a los models
