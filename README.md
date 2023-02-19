@@ -20,12 +20,14 @@ En este proyecto se cumplen los siguientes puntos
 
 El .HTML que se heredara es el:
 
--**base.html**
+**base.html**
 
 El cual contiene un nav bar con accesos a otros templates, entre estas opciones tenemos la pagina de productos y las opciones para editar y ver la información del usuario y adminstrador.
 
 -Templates que heredan esta base son: **todos**
+
 -Ruta del .html: **connectorshop/templates/base.html**
+
 -Permisos: **Ninguno**
 
 
