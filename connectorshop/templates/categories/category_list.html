@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Categorías</h1>
+<div class="button-center">
+	<a class="cyberpunk-button" href="{% url 'category_new' %}">Crear nueva categoría</a>
+</div>
+<div class="container-fluid centered">
+	<div class="row px-4">
+		<table id="my-table" border="1" style="border: 3px solid blue">
+			<thead>
+				<tr>
+					<th class="text-aqua">Nombre</th>
+					<th class="text-aqua">Descripción</th>
+					<th class="text-aqua">Destacada</th>
+					<th class="text-aqua">Orden</th>
+					<th class="text-aqua">Acciones</th>
+				</tr>
+			</thead>
+			<tbody id="table-body">
+				{% for category in categories %}
+				<tr>
+					<td class="text-green text-20 bold">{{ category.name }}</td>
+					<td class="text-20" style="max-width: 800px;">{{ category.description }}</td>
+					<td class="text-20">{{ category.highlighted }}</td>
+					<td class="text-20">{{ category.order }}</td>
+					<td>
+						<a href="{% url 'category_detail' category.id %}">Detalles</a></br>
+						<a href="{% url 'category_edit' category.id %}">Editar</a></br>
+						<a href="{% url 'category_delete' category.id %}" onclick="return confirm('¿Estás seguro que quieres eliminar esta categoría?');">Eliminar</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/media/styles/style_table_list.css" />
+
+<script>
+	$(document).ready(function () {
+		$("#my-table").DataTable({
+			searching: true,
+			paging: true,
+			pageLength: 10,
+		});
+	});
+</script>
+{% endblock %}

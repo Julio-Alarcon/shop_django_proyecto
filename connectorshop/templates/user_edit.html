@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-sm-3 mx-auto">
+        <div class="card">
+            <form method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ password_form.as_p }}
+                <button class="cyberpunk-button" type="submit">Guardar cambios</button>
+            </form>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/media/styles/style_user_edit.css" />
+{% endblock %}

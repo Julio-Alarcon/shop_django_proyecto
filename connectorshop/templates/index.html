@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container my-5">
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			<div class="card border-cyan-card text-center">
+				<div class="card-header background-blue-black">
+					<h4 class="card-title">INICIAR SESION</h4>
+				</div>
+				<div class="card-body login-register">
+					<form method="post">
+						{% csrf_token %} {{ login_form.as_p }}
+						{% if request.user.is_authenticated %}
+						<button disabled class="cyberpunk-button" type="submit" id="login-submit" name="login-submit">LOGIN</button>
+						{% else %}
+						<button class="cyberpunk-button" type="submit" id="login-submit" name="login-submit">LOGIN</button>
+						{% endif %}
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 mx-auto">
+			<div class="card border-cyan-card text-center">
+				<div class="card-header background-blue-black">
+					<h4 class="card-title">REGISTRARSE</h4>
+				</div>
+				<div class="card-body login-register">
+					<form method="post">
+						{% csrf_token %} {{ register_form.as_p }}
+						{% if request.user.is_authenticated %}
+						<button disabled class="cyberpunk-button" type="submit" id="register-submit" name="register-submit">REGISTER</button>
+						{% else %}
+						<button class="cyberpunk-button" type="submit" id="register-submit" name="register-submit">REGISTER</button>
+						{% endif %}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="/media/styles/style_index.css" />
+{% endblock %}

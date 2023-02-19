@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+<div class="button-center">
+	<a href="{% url 'tag_list' %}"><h1> << {{ tag.name }}</h1></a>
+</div>
+<div class="container-fluid centered">
+	<div class="row">
+		<div class="card-detail">
+			<div class="card-body">
+				<label class="text-yellow text-20">Descripcion:</label><p class="text-aqua">{{ tag.description }}</p>
+				<label class="text-yellow text-20">Popular:</label><p class="text-aqua">{{ tag.highlighted }}</p>
+				<label class="text-yellow text-20">Orden:</label><p class="text-aqua">{{ tag.order }}</p>
+				<label class="text-yellow text-20">Creado el:</label><p class="text-aqua">{{ tag.created_at }}</p>
+				<label class="text-yellow text-20">Actualizado el:</label><p class="text-aqua">{{ tag.updated_at }}</p>
+				<label><a href="{% url 'tag_edit' tag.id %}">Editar</a></label>
+				<label><a href="{% url 'tag_delete' tag.id %}" onclick="return confirm('¿Estás seguro que quieres eliminar este tag?');">Eliminar</a></label>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Contenido -->
+<div class="container-product background-product min-height-600">
+	<div class="row">
+		<div class="col-md-2">
+			<div class="card background-blue-black mx-2 position-fixed" style="left: 0; z-index: 9999; opacity: 0.8;">
+				<div class="card-body">
+					<form>
+						{{ form_article.search.label_tag }}
+						<br />
+						{{ form_article.search }}
+						<br />
+						{{ form_article.tag.label_tag }}
+						<br />
+						{{ form_article.tag }}
+						<br />
+						{{ form_article.category.label_tag }}
+						<br />
+						{{ form_article.category }}
+						<br />
+						<button class="btn btn-primary mt-4" type="submit">Buscar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-10">
+			<div class="row mx-4">
+				{% for article in articles %}
+				<div class="mb-4 mt-4" style="width: 320px;">
+					<div class="card h-100 w-100 background-black" style="min-width: 300px; max-width: 300px; min-height: 600px; max-height: 600px;">
+						<img
+							class="card-img-top h-50"
+							src="/media/{{ article.image }}"
+							alt=""
+							onclick="showAlert('{{ article.title }}','{{ article.sku }}','{{ article.stock }}','{{ article.content }}','/media/{{ article.image }}')"
+						/>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="#">{{ article.title }}</a>
+							</h4>
+							{% load humanize %}
+							<h5>${{ article.price|floatformat:0|intcomma }} CLP</h5>
+							<p class="card-text text-orange">{{ article.content }}</p>
+						</div>
+						<div class="card-footer footer-product">
+							{% if article.stock > 0 %}
+							<div class="row d-flex justify-content-center">
+								<select class="item-quantity input-number my-2" name="x" id="{{ article.id }}">
+									{% for i in ""|rjust:article.stock %}
+									<option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="row d-flex justify-content-center">
+								<button class="btn btn-primary btn-item cyberpunk-button">Agregar</button>
+							</div>
+							{% else %}
+							<div class="row d-flex justify-content-center">
+								<button disabled class="btn-item cyberpunk-button">OUT STOCK</button>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				{% empty %}
+				<p>No hay artículos disponibles.</p>
+				{% endfor %}
+			</div>
+
+			<div class="d-flex justify-content-center">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						{% if articles.has_previous %}
+						<li class="page-item">
+							<a class="page-link" href="?page={{ articles.previous_page_number }}">&laquo;</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link" href="#">&laquo;</a>
+						</li>
+						{% endif %} {% for page in articles.paginator.page_range %} {% if articles.number == page %}
+						<li class="page-item active">
+							<a class="page-link" href="#">{{ page }}</a>
+						</li>
+						{% elif page > articles.number|add:'-3' and page < articles.number|add:'3' %}
+						<li class="page-item">
+							<a class="page-link" href="?page={{ page }}">{{ page }}</a>
+						</li>
+						{% endif %} {% endfor %} {% if articles.has_next %}
+						<li class="page-item">
+							<a class="page-link" href="?page={{ articles.next_page_number }}">&raquo;</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link" href="#">&raquo;</a>
+						</li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	const itemQuantityInputs = document.querySelectorAll(".item-quantity");
+	itemQuantityInputs.forEach((input) => {
+		input.addEventListener("change", (event) => {
+			const input = event.target;
+			const addButton = input.parentElement.parentElement;
+			addButton.querySelector(".btn-text").textContent = `Agregar (${input.value})`;
+		});
+	});
+</script>
+<script>
+	function showAlert(name, sku, stock, content, image) {
+		var message = "SKU: " + sku + "\n" + "Stock: " + stock + "\n" + "Descripcion: " + content;
+		Swal.fire({
+			title: name,
+			text: message,
+			imageUrl: image,
+			showClass: {
+				popup: "animate__animated animate__flipInY",
+			},
+			hideClass: {
+				popup: "animate__animated animate__flipOutY",
+			},
+			backdrop: "rgba(0,0,123,0.4)",
+		});
+	}
+</script>
+{% endblock %}

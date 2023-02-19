@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<div class="button-center">
+	<a href="{% url 'tag_list' %}"><h1> << {{ tag.name }}</h1></a>
+</div>
+<div class="container-fluid centered">
+	<div class="row">
+		<div class="card-edit">
+			<div class="card-body">
+				<form method="post">
+					{% csrf_token %} {{ form.as_p }}
+					<button class="cyberpunk-button" type="submit">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
