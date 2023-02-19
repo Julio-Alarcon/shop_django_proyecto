@@ -34,8 +34,8 @@ Permisos: **Ninguno**
 
 Los modelos son:
 
-**Category**
-**Tag**
+**Category**, 
+**Tag**, 
 **Article**
 
 Los models Tag y Category componen parte del model Article de forma muchos a muchos, **tag** contendra todos los textos que querramos para definir un producto, por Ej: "Nuevo", "Usado", "Tecnologico", etc.., **Category** contendra todos los tipos de productos de los que puede proceder un articulo, por Ej: "CPU", "Teclado", "Microfono", etc.., **Article** contendra todos los articulos que se registran en la tienda con sus respectivos datos como el stock, sku, precio, descripcion, tags, categoria y si se encuentra publicado para su compra.
