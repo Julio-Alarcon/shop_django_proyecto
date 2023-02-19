@@ -28,7 +28,7 @@
 						{% endfor %}
 					</td>
 					{% load humanize %}
-					<td class="text-20" style="max-width: 20px;">${{ article.price|floatformat:0|intcomma }} CLP</td>
+					<td class="text-20" style="max-width: 80px;">${{ article.price|floatformat:0|intcomma }} CLP</td>
 					<td>
 						<a href="{% url 'article_detail' article.id %}">Detalles</a></br>
 						<a href="{% url 'article_edit' article.id %}">Editar</a></br>

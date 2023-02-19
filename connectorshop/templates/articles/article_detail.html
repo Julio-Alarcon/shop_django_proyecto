@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <div class="button-center">
-	<a href="{% url 'article_list' %}"><h1> << {{ article.name }}</h1></a>
+	<a href="{% url 'article_list' %}"><h1> << {{ article.title }}</h1></a>
 </div>
 <div class="container-fluid centered">
 	<div class="card-detail">
@@ -16,13 +16,28 @@
 			</div>
 			<div class="col-md-6" style="width: 600px;">
 				<div class="card-body">
-					<label class="text-yellow text-20">Descripcion:</label><p class="text-aqua">{{ article.description }}</p>
-					<label class="text-yellow text-20">Popular:</label><p class="text-aqua">{{ article.highlighted }}</p>
-					<label class="text-yellow text-20">Orden:</label><p class="text-aqua">{{ article.order }}</p>
-					<label class="text-yellow text-20">Creado el:</label><p class="text-aqua">{{ article.created_at }}</p>
-					<label class="text-yellow text-20">Actualizado el:</label><p class="text-aqua">{{ article.updated_at }}</p>
-					<label><a href="{% url 'article_edit' article.id %}">Editar</a></label>
-					<label><a href="{% url 'article_delete' article.id %}" onclick="return confirm('¿Estás seguro que quieres eliminar este articulo?');">Eliminar</a></label>
+					<label class="text-yellow text-20">Nombre:</label><p class="text-aqua text-20">{{ article.title }}</p>
+					<label class="text-yellow text-20">Descripcion:</label><p class="text-aqua text-20">{{ article.description }}</p>
+					<label class="text-yellow text-20">Stock:</label><p class="text-aqua text-20">{{ article.stock }}</p>
+					<label class="text-yellow text-20">SKU:</label><p class="text-aqua text-20">{{ article.sku }}</p>
+					{% load humanize %}
+					<label class="text-yellow text-20">Precio:</label><p class="text-aqua text-20">${{ article.price|floatformat:0|intcomma }} CLP</p>
+					
+					<label class="text-yellow text-20">Categoria:</label><p class="text-aqua text-20">
+						{% for category in article.category.all %}
+						{{ category.name }}
+						{% endfor %}
+					</p>
+					<label class="text-yellow text-20">Tags:</label><p class="text-aqua text-20">
+						{% for tag in article.tag.all %}
+						{{ tag.name }}, 
+						{% endfor %}
+					</p>
+
+					<label class="text-yellow text-20">Creado el:</label><p class="text-aqua text-20">{{ article.created_at }}</p>
+					<label class="text-yellow text-20">Actualizado el:</label><p class="text-aqua text-20">{{ article.updated_at }}</p>
+					<label><a class="text-20" href="{% url 'article_edit' article.id %}">Editar</a></label>
+					<label><a class="text-20" href="{% url 'article_delete' article.id %}" onclick="return confirm('¿Estás seguro que quieres eliminar este articulo?');">Eliminar</a></label>
 				</div>
 			</div>
 		</div>
