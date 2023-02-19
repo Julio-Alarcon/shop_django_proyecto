@@ -30,7 +30,7 @@ Ruta del .html: **connectorshop/templates/base.html**
 Permisos: **Ninguno**
 
 
-### 3 clases en models
+### 3 Clases en models
 
 Los modelos son:
 
