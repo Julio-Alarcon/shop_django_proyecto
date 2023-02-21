@@ -91,11 +91,13 @@ El siguiente formulario ayuda a buscar entre los distintos tipos de productos qu
 ## Readme que indique el orden en el cual se prueban las cosas
 
 - url: "/" Registro de cuenta o inicio de sesion
+
 **@login_required**
 - url: "/home" Visualización de la información del usuario
 - url: "/user_edit" Formulario que te permitira editar la información del usuario
 - url: "/products" Lista en el cual te encontraras todos los productos
 - url: "/logout" Cerrar sesion
+
 **@superuser_required**
 - url: "/article/list" Lista de articulos en formato texto, con posibilidad de crear uno nuevo, ver los detalles, editar la información y eliminar
 - url: "/article/new" Formulario para crear un nuevo articulo
