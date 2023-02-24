@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User, Permission
 from django.db import models
 
+class userDetail(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatar/', default='avatar/notuser.jpg')
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)

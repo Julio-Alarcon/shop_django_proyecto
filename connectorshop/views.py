@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from .models import Article, Category, Tag
+from .models import userDetail, Article, Category, Tag
 from .forms import RegisterForm, LoginForm, EditUserForm, EditPasswordForm, CategoryForm, ArticleSearchForm, TagForm, ArticleForm
 
 
@@ -53,7 +53,15 @@ def index(request):
 ## GESTION DE CUENTA ##
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    user = request.user
+    user_detail = userDetail.objects.get(user=user)
+    if request.method == 'POST':
+        imagen = request.FILES.get('imagen')
+        if imagen:
+            user_detail.imagen = imagen
+            user_detail.save()
+            return redirect('home')
+    return render(request, 'home.html', {'user_detail': user_detail})
 class LogoutView(TemplateView):
     template_name = 'logout.html'
     

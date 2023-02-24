@@ -1,41 +1,70 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container mt-5">
-	<div class="card">
-		<div class="card-header">
-			<div class="row">
-				<div class="col-md-10">
-					<h3>Detalles del usuario</h3>
+<div class="container-fluid centered">
+	<div class="card card-detail">
+		<div class="card-header mt-3">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="form-group">
+					<div class="avatar-container">
+						<img src="{{ user_detail.imagen.url }}" alt="Avatar" width="400" height="400" title="Editar" id="avatar-image" onclick="selectAvatar()">
+						<label for="avatar-input">
+							<div class="edit-layer">Editar</div>
+						</label>
+						<input type="file" name="imagen" id="avatar-input" accept="image/*" style="display: none;" onchange="previewImage()">
+					</div>
 				</div>
-				<div class="col-md-2">
-					<a class="btn btn-primary" href="/user_edit">EDITAR</a>
-				</div>
-			</div>
+				<button type="submit" class="btn button-center cyberpunk-blue-button">Actualizar imagen</button>
+			</form>
+			
 		</div>
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<span id="user_text">Nombre: </span>
-							<span id="user_data">{{ user.first_name }} {{ user.last_name }}</span>
+						<li class="list-group-item background-blue-black">
+							<span class="text-orange">Nombre: </span>
+							<span class="text-green">{{ user.first_name }} {{ user.last_name }}</span>
 						</li>
-						<li class="list-group-item">
-							<span id="user_text">Nombre de usuario: </span>
-							<span id="user_data">{{ user.username }}</span>
+						<li class="list-group-item background-blue-black">
+							<span class="text-orange">Nombre de usuario: </span>
+							<span class="text-green">{{ user.username }}</span>
 						</li>
-						<li class="list-group-item"> 
-							<span id="user_text">Correo electrónico: </span>
-							<span id="user_data">{{ user.email }}</span>
+						<li class="list-group-item background-blue-black"> 
+							<span class="text-orange">Correo electrónico: </span>
+							<span class="text-green">{{ user.email }}</span>
 						</li>
-						<li class="list-group-item">
-							<span id="user_text">Fecha de registro: </span>
-							<span id="user_data">{{ user.date_joined|date:"d F Y" }}</span>
+						<li class="list-group-item background-blue-black">
+							<span class="text-orange">Fecha de registro: </span>
+							<span class="text-green">{{ user.date_joined|date:"d F Y" }}</span>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<div class="card-footer">
+			<a class="btn button-center cyberpunk-button" href="/user_edit">EDITAR</a>
+		</div>
 	</div>
 </div>
-<link rel="stylesheet" type="text/css" href="/media/styles/style_home.css" />
+<script>
+	function selectAvatar() {
+		$('#avatar-file').click();
+	}	
+</script>
+<script>
+	function previewImage() {
+		var preview = document.querySelector('#avatar-image');
+		var file = document.querySelector('#avatar-input').files[0];
+		var reader = new FileReader();
+	  
+		reader.addEventListener("load", function () {
+		  preview.src = reader.result;
+		}, false);
+	  
+		if (file) {
+		  reader.readAsDataURL(file);
+		}
+	}
+</script>
+	
 {% endblock %}

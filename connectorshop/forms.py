@@ -121,5 +121,3 @@ class ArticleSearchForm(forms.Form):
             articles = articles.filter(category=category)
         return articles
 ## FORMULARIO DE BUSQUEDA DE ARTICULOS ##
-
-
