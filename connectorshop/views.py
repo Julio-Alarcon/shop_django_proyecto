@@ -40,7 +40,8 @@ def index(request):
                 user = register_form.save()
                 user.set_password(register_form.cleaned_data.get('password'))
                 user.save()
-
+                user_detail = userDetail.objects.create(user=user)
+                user_detail.save()
                 login(request, user)
                 return redirect('home')
         elif 'logout' in request.POST:

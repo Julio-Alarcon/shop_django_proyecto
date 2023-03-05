@@ -40,3 +40,11 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.sku
+    
+class Review(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='reviews')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField(choices=((1, '1 star'), (2, '2 stars'), (3, '3 stars'), (4, '4 stars'), (5, '5 stars')))
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
