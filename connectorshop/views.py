@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from .models import userDetail, Article, Category, Tag
-from .forms import RegisterForm, LoginForm, EditUserForm, EditPasswordForm, CategoryForm, ArticleSearchForm, TagForm, ArticleForm
+from .forms import RegisterForm, LoginForm, EditUserForm, EditPasswordForm, CategoryForm, ArticleSearchForm, TagForm, ArticleForm, ReviewForm
 
 
 
@@ -238,12 +238,14 @@ def article_list(request):
         'articles': articles
     }
     return render(request, template_name, context)
-@superuser_required
+@login_required
 def article_detail(request, pk):
     template_name = 'articles/article_detail.html'
     article = get_object_or_404(Article, pk=pk)
+    reviews = article.reviews.all()  # obtener todos los reviews del artículo
     context = {
-        'article': article
+        'article': article,
+        'reviews': reviews,  # agregar los reviews al contexto
     }
     return render(request, template_name, context)
 @superuser_required

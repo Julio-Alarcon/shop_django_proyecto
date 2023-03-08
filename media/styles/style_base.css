@@ -116,8 +116,16 @@ a:hover {
     background-color: #091833;
 }
 
+.background-blue-black2 {
+    background-color: #010b1d;
+}
+
 .background-black {
     background-color: #000000;
+}
+
+.background-red {
+    background-color: #da0000;
 }
 
 .background-product {
