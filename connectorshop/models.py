@@ -1,9 +1,21 @@
 from django.contrib.auth.models import User, Permission
+from django.contrib.auth import get_user_model
 from django.db import models
+
+User = get_user_model()
 
 class userDetail(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='avatar/', default='avatar/notuser.jpg')
+
+class Message(models.Model):
+    text = models.CharField(max_length=200)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

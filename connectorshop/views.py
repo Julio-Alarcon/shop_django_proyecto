@@ -242,12 +242,23 @@ def article_list(request):
 def article_detail(request, pk):
     template_name = 'articles/article_detail.html'
     article = get_object_or_404(Article, pk=pk)
-    reviews = article.reviews.all()  # obtener todos los reviews del artículo
+    reviews = article.reviews.all()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('article_detail', pk=pk)
+    else:
+        form = ReviewForm(initial={'article_id': pk, 'author_id': request.user.id})
+
     context = {
         'article': article,
-        'reviews': reviews,  # agregar los reviews al contexto
+        'reviews': reviews,
+        'form': form,
     }
     return render(request, template_name, context)
+
 @superuser_required
 def article_delete(request, pk):
     article = Article.objects.get(pk=pk)

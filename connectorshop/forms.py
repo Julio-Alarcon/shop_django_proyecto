@@ -143,10 +143,11 @@ class ReviewForm(forms.ModelForm):
     ]
     rating = forms.ChoiceField(choices=RATING_CHOICES)
     article_id = forms.IntegerField(widget=forms.HiddenInput())
+    author_id = forms.IntegerField(widget=forms.HiddenInput())
 
     class Meta:
         model = Review
-        exclude = ('author',)
+        exclude = ('author','article')
 
         widgets = {
             'comment': forms.Textarea(attrs={'rows': 4}),
@@ -158,12 +159,15 @@ class ReviewForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         article_id = kwargs.pop('article_id', None)
+        author_id = kwargs.pop('author_id', None)
         super().__init__(*args, **kwargs)
         self.fields['article_id'].initial = article_id
+        self.fields['author_id'].initial = author_id
 
     def save(self, commit=True):
         review = super().save(commit=False)
         review.article_id = self.cleaned_data['article_id']
-        review.author_id = self.initial['author'].id
-        review.save()
+        review.author_id = self.cleaned_data['author_id']
+        if commit:
+            review.save()
         return review

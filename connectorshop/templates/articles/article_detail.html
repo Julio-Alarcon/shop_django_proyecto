@@ -46,12 +46,15 @@
 			</div>
 		</div>
 		<div class="card-footer">
-			<div class="card-title mt-2">
+			<div class="card-title mt-2 d-flex justify-content-between align-items-center">
 				<h5 class="text-green">OPINIONES</h5>
+				<div class="col-auto">
+					<button type="button" class="btn cyberpunk-blue-button" data-bs-toggle="modal" data-bs-target="#reviewModal">Dejar una opinión</button>
+				</div>
 			</div>
 			<div class="card-body">
 				{% for review in article.reviews.all %}
-				<div class="card mb-2 mt-2 mx-auto background-blue-black2" style="width: 500px">
+				<div class="card mb-2 mt-2 mx-auto background-blue-black2" style="min-width: 100px; max-width: 1000px; min-height: 100px; max-height: 300px">
 					<div class="card-body p-2">
 						<div class="d-flex justify-content-between align-items-center">
 							<h5 class="card-title">{{ review.author }}</h5>
@@ -92,4 +95,40 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content background-blue-black2">
+			<div class="modal-header">
+				<h5 class="modal-title" id="reviewModalLabel">Ejemplo de modal</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+			</div>
+			<form method="post" id="reviewForm">
+				<div class="modal-body">
+					{% csrf_token %}
+					{{ form.as_p }}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-HVgoPnvA/DLlUGVJT8EiGhaxAkoN4rYBjVjBbeBXa9jOFqpo/63lgcd+V3BvEjh4" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-GFtoNvNtgRwCcpS4I/H+OJjE53fw2l3q4J+ctbLkGRJlAupRgJpSNG1TUpT65pOV"
+	crossorigin="anonymous"
+></script>
+
+<script>
+	$(document).ready(function () {
+		$("#exampleModal").on("shown.bs.modal", function () {
+			console.log("El modal se ha mostrado");
+		});
+	});
+</script>
+
 {% endblock %}

@@ -249,7 +249,7 @@ button[disabled] {
     margin: 0 auto;
 }
 
-select{
+select {
     background-color: #0f0f0f;
     color: #ffffff;
     border: 2px solid #00ff11;
@@ -260,7 +260,7 @@ select{
     transition: all 0.3s ease-in-out;
 }
 
-input{
+input {
     background-color: #0f0f0f;
     color: #ffffff;
     border: 2px solid #00ff11;
@@ -282,9 +282,9 @@ input{
 .avatar-container {
     position: relative;
     display: inline-block;
-  }
-  
-  .edit-layer {
+}
+
+.edit-layer {
     position: absolute;
     top: 0;
     left: 0;
@@ -298,8 +298,15 @@ input{
     align-items: center;
     justify-content: center;
     transition: opacity 0.3s ease-in-out;
-  }
-  
-  .avatar-container:hover .edit-layer {
+}
+
+.avatar-container:hover .edit-layer {
     opacity: 1;
-  }
+}
+
+.chatbox {
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
