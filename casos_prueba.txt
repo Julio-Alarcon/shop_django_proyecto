@@ -5,7 +5,9 @@ Inicia sesión como usuario con permisos para crear artículos.
 Navega a la sección de creación de artículos.
 Completa los campos obligatorios del formulario, como el título, la descripción y las etiquetas.
 Verifica que se muestre un mensaje de confirmación después de publicar el artículo.
-Verifica que el artículo publicado sea visible en la sección de blog y que la información sea precisa.
+Verifica que el artículo publicado sea visible en la sección de productos y que la información sea precisa.
+Resultado correcto: Después de publicar el artículo, se muestra un mensaje de confirmación y el artículo se muestra en la sección de productos con la información correcta.
+Resultado incorrecto: Después de publicar el artículo, no se muestra ningún mensaje de confirmación y el artículo no se muestra en la sección de productos o se muestra con información incorrecta.
 
 
 Prueba de búsqueda de artículo:
@@ -15,6 +17,8 @@ Navega a la sección de búsqueda de artículos.
 Ingresa un término de búsqueda en el formulario, como una palabra clave o una categoría.
 Verifica que se muestren los resultados correctos y que se puedan filtrar por fecha, relevancia u otros criterios.
 Haz clic en un artículo en los resultados de búsqueda y verifica que se muestre la información correcta.
+Resultado correcto: Después de ingresar un término de búsqueda en el formulario, se muestran los resultados relevantes y se puede filtrar por fecha, relevancia u otros criterios.
+Resultado incorrecto: Después de ingresar un término de búsqueda en el formulario, no se muestran resultados o se muestran resultados irrelevantes.
 
 
 Prueba de cambio de información de usuario:
@@ -24,5 +28,7 @@ Inicia sesión como usuario y navega a la sección de perfil.
 Haz cambios en la información de perfil, como la dirección de correo electrónico o la foto de perfil.
 Verifica que los cambios se guarden correctamente y que la información actualizada se muestre en la página de perfil.
 Cierra sesión y vuelve a iniciar sesión para verificar que los cambios se hayan guardado correctamente y que se muestre la información actualizada en la página de perfil.
+Resultado correcto: Después de hacer cambios en la información de perfil, se guarda correctamente y se muestra la información actualizada en la página de perfil.
+Resultado incorrecto: Después de hacer cambios en la información de perfil, los cambios no se guardan correctamente o no se muestran en la página de perfil.
 
 
