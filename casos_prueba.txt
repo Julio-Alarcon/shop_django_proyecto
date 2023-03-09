@@ -32,3 +32,5 @@ Resultado correcto: Después de hacer cambios en la información de perfil, se g
 Resultado incorrecto: Después de hacer cambios en la información de perfil, los cambios no se guardan correctamente o no se muestran en la página de perfil.
 
 
+Video: https://www.youtube.com/watch?v=eVlYeTnLUTo
+
