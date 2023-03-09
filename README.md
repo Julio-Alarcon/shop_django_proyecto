@@ -111,3 +111,4 @@ El siguiente formulario ayuda a buscar entre los distintos tipos de productos qu
 - url: "/category/new" Formulario para crear una nueva categoria
 - url: "/category/<int:pk>/edit" Formulario que permite editar la informacion de una categoria
 - url: "/category/<int:pk>/delete" Eliminar la categoria
+
