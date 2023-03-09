@@ -104,12 +104,20 @@ a:hover {
     color: white;
 }
 
+.text-white2 {
+    color: rgb(201, 201, 201);
+}
+
 .background-orange {
     background-color: #ff6600;
 }
 
 .background-cyan {
     background-color: cyan;
+}
+
+.background-grey {
+    background-color: #131314;
 }
 
 .background-blue-black {
