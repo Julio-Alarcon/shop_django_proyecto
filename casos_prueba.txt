@@ -1,0 +1,24 @@
+Prueba de creación de artículo:
+Objetivo: Asegurar que los usuarios puedan crear y publicar un artículo sin problemas.
+Pasos:
+Inicia sesión como usuario con permisos para crear artículos.
+Navega a la sección de creación de artículos.
+Completa los campos obligatorios del formulario, como el título, la descripción y las etiquetas.
+Verifica que se muestre un mensaje de confirmación después de publicar el artículo.
+Verifica que el artículo publicado sea visible en la sección de blog y que la información sea precisa.
+Prueba de búsqueda de artículo:
+Objetivo: Asegurar que los usuarios puedan buscar artículos utilizando un formulario y que se muestren los resultados correctos.
+Pasos:
+Navega a la sección de búsqueda de artículos.
+Ingresa un término de búsqueda en el formulario, como una palabra clave o una categoría.
+Verifica que se muestren los resultados correctos y que se puedan filtrar por fecha, relevancia u otros criterios.
+Haz clic en un artículo en los resultados de búsqueda y verifica que se muestre la información correcta.
+Prueba de cambio de información de usuario:
+Objetivo: Asegurar que los usuarios puedan cambiar su información de perfil y que la información se actualice correctamente.
+Pasos:
+Inicia sesión como usuario y navega a la sección de perfil.
+Haz cambios en la información de perfil, como la dirección de correo electrónico o la foto de perfil.
+Verifica que los cambios se guarden correctamente y que la información actualizada se muestre en la página de perfil.
+Cierra sesión y vuelve a iniciar sesión para verificar que los cambios se hayan guardado correctamente y que se muestre la información actualizada en la página de perfil.
+
+
